@@ -1,3 +1,10 @@
+var userData = {
+    accessToken : "",
+    tokenType : "",
+    expiresIn : 0,
+}
+
+
 const createLi = (user) => {
     const li = document.createElement('li');
     // add user details to `li`
@@ -30,7 +37,7 @@ function GetAuthorisation()
 {
     let _clientId = "30f17f826d674bb48dcb9ae95ad228c3";
     let _redirectUri = "https://noxshus.github.io/PlaylistBuddy/";
-    let _scopes = "user-read-private user-read-email";
+    let _scopes = "user-modify-playback-state";
     
     window.location.href = "https://accounts.spotify.com/authorize" +
     "?client_id=" + encodeURIComponent(_clientId) +
@@ -42,10 +49,24 @@ function GetAuthorisation()
 function GetAuthorisationParameters()
 {
     const _urlParams = new URLSearchParams(window.location.hash);
-    let _accessToken = _urlParams.get('#access_token');
-    let _tokenType = _urlParams.get('token_type');
-    let _expiresIn = _urlParams.get('expires_in');
+    accessToken = _urlParams.get('#access_token');
+    tokenType = _urlParams.get('token_type');
+    expiresIn = _urlParams.get('expires_in');
 
     console.log(window.location.hash);
-    console.log("Access Token: " + _accessToken + " Token Type: " + _tokenType + " Expires In: " + _expiresIn);
+    console.log("Access Token: " + accessToken + " Token Type: " + tokenType + " Expires In: " + expiresIn);
+}
+
+function PlayTrack()
+{
+    axios({
+        method: 'put', //you can set what request you want to be
+        url: "https://api.spotify.com/v1/me/player/play",
+        headers: {
+          Authorization: 'Bearer ' + accessToken
+        },
+        body: {
+            context_uri: "spotify:track:4uLU6hMCjMI75M1A2tKUQC"
+        }
+      })
 }
