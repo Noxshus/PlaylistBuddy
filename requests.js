@@ -60,13 +60,13 @@ function GetAuthorisationParameters()
 function PlayTrack()
 {
     axios({
-        method: 'put', //you can set what request you want to be
+        method: "put", //you can set what request you want to be
         url: "https://api.spotify.com/v1/me/player/play",
         headers: {
-          Authorization: 'Bearer ' + accessToken
+          "Authorization": "Bearer " + accessToken
         },
         body: {
-            context_uri: "spotify:track:4uLU6hMCjMI75M1A2tKUQC"
+            "context_uri": "spotify:track:4uLU6hMCjMI75M1A2tKUQC"
         }
       })
 }
