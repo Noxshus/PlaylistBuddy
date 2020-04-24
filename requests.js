@@ -66,7 +66,7 @@ function PlayTrack()
           "Authorization": "Bearer " + accessToken
         },
         data: { //this is the body
-            "context_uri": "spotify:track:4uLU6hMCjMI75M1A2tKUQC"
+            "uris": ["spotify:track:4uLU6hMCjMI75M1A2tKUQC"]
         }
       })
 }
