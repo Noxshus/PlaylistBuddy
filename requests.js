@@ -41,11 +41,11 @@ function GetAuthorisation()
 
 function GetAuthorisationParameters()
 {
-    const _urlParams = new URLSearchParams(window.location.search);
+    const _urlParams = new URLSearchParams(window.location.hash);
     let _accessToken = _urlParams.get('access_token');
     let _tokenType = _urlParams.get('token_type');
     let _expiresIn = _urlParams.get('expires_in');
 
-    console.log(window.location.search);
+    console.log(window.location.hash);
     console.log("Access Token: " + _accessToken + " Token Type: " + _tokenType + " Expires In: " + _expiresIn);
 }
