@@ -28,18 +28,6 @@ fetchUsers();
 
 function GetAuthorisation()
 {
-    app.get('/login', function(req, res) {
-        let scopes = 'user-read-private user-read-email';
-        res.redirect('https://accounts.spotify.com/authorize' +
-          '?response_type=code' +
-          '&client_id=' + my_client_id +
-          (scopes ? '&scope=' + encodeURIComponent(scopes) : '') +
-          '&redirect_uri=' + encodeURIComponent(redirect_uri));
-        });        
-}
-
-function RedirectToSpotifyAuth()
-{
     let _clientId = "30f17f826d674bb48dcb9ae95ad228c3";
     let _redirectUri = "https://noxshus.github.io/PlaylistBuddy/";
     let _scopes = "user-read-private user-read-email";
@@ -49,4 +37,14 @@ function RedirectToSpotifyAuth()
     "&response_type=token" +
     "&redirect_uri=" + encodeURIComponent(_redirectUri) +
     "&scope=" + encodeURIComponent(_scopes);
+}
+
+function GetAuthorisationParameters()
+{
+    const urlParams = new URLSearchParams(window.location.search);
+    let _accessToken = urlParams.get('access_token');
+    let _tokenType = urlParams.get('token_type');
+    let _expiresIn = urlParams.get('expires_in');
+
+    console.log("Access Token: " + _accessToken + " Token Type: " + _tokenType + " Expires In: " + _expiresIn);
 }
