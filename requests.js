@@ -54,9 +54,10 @@ function GetPlaylists()
         },
       })
       .then(function (response) {
+        console.log(response);
+        console.log(response.data);
         userData.userPlayList = JSON.parse(response.data);
         console.log(userData.userPlayList);
-        //console.log(response);
         console.log(userData.userPlayList.data.items[0].name);
       })
       .catch(function (error) {
