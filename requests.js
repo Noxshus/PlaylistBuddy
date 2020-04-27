@@ -58,7 +58,7 @@ function GetPlaylists()
         console.log(response.data);
         userData.userPlayList = response.data;
         console.log(userData.userPlayList);
-        console.log(userData.userPlayList.data.items[0].name);
+        console.log(userData.userPlayList.items[0].name);
       })
       .catch(function (error) {
         console.log(error);
