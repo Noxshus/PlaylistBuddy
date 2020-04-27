@@ -59,8 +59,23 @@ function GetPlaylists()
         userData.userPlayList = response.data;
         console.log(userData.userPlayList);
         console.log(userData.userPlayList.items[0].name);
+        UpdatePlaylists();
       })
       .catch(function (error) {
         console.log(error);
       });
+}
+
+//------
+
+function UpdatePlaylists()
+{
+    for (let i = 0; i < userData.userPlayList.items.length; i++)
+    {    
+        let _node = document.createElement("LI"); 
+        let _textNode = document.createTextNode(userData.userPlayList.items[i].name);
+        _node.appendChild(_textNode);
+
+        document.getElementById("playlists").appendChild(_node);
+    }
 }
