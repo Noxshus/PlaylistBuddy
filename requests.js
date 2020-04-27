@@ -38,7 +38,7 @@ function PlayTrack()
         headers: {
           "Authorization": "Bearer " + userData.accessToken
         },
-        userData: { //this is the body
+        data: { //this is the body
             "uris": ["spotify:track:4uLU6hMCjMI75M1A2tKUQC"]
         }
       })
@@ -52,6 +52,9 @@ function GetPlaylists()
         headers: {
           "Authorization": "Bearer " + userData.accessToken
         },
+        query: {
+            "limit": 50, // this is the maximum value for this. Users with >50 playlists will need extra handling, using the "offset" param: https://developer.spotify.com/documentation/web-api/reference/playlists/get-a-list-of-current-users-playlists/
+        }
       })
       .then(function (response) {
         console.log(response);
