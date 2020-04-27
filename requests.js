@@ -46,7 +46,7 @@ function GetPlaylists()
 {
     axios({
         method: "get",
-        url: "https://api.spotify.com/v1/v1/me/playlists ",
+        url: "https://api.spotify.com/v1/me/playlists",
         headers: {
           "Authorization": "Bearer " + userData.accessToken
         },
