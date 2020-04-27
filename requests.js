@@ -2,6 +2,8 @@ var userData = {
     accessToken : "",
     tokenType : "",
     expiresIn : 0,
+
+    userPlayList: {},
 }
 
 function GetAuthorisation()
@@ -52,7 +54,9 @@ function GetPlaylists()
         },
       })
       .then(function (response) {
+        userPlayList = JSON.parse(response);
         console.log(response);
+        console.log(userPlayList.data.items[0].name);
       })
       .catch(function (error) {
         console.log(error);
