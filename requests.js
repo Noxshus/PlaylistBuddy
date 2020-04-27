@@ -20,12 +20,12 @@ function GetAuthorisation()
 function GetAuthorisationParameters()
 {
     const _urlParams = new URLSearchParams(window.location.hash);
-    data.accessToken = _urlParams.get('#access_token');
-    data.tokenType = _urlParams.get('token_type');
-    data.expiresIn = _urlParams.get('expires_in');
+    userData.accessToken = _urlParams.get('#access_token');
+    userData.tokenType = _urlParams.get('token_type');
+    userData.expiresIn = _urlParams.get('expires_in');
 
     console.log(window.location.hash);
-    console.log("Access Token: " + data.accessToken + " Token Type: " + data.tokenType + " Expires In: " + data.expiresIn);
+    console.log("Access Token: " + userData.accessToken + " Token Type: " + userData.tokenType + " Expires In: " + userData.expiresIn);
 }
 
 function PlayTrack()
@@ -34,9 +34,9 @@ function PlayTrack()
         method: "put",
         url: "https://api.spotify.com/v1/me/player/play",
         headers: {
-          "Authorization": "Bearer " + data.accessToken
+          "Authorization": "Bearer " + userData.accessToken
         },
-        data: { //this is the body
+        userData: { //this is the body
             "uris": ["spotify:track:4uLU6hMCjMI75M1A2tKUQC"]
         }
       })
@@ -48,7 +48,7 @@ function GetPlaylists()
         method: "get",
         url: "https://api.spotify.com/v1/v1/me/playlists ",
         headers: {
-          "Authorization": "Bearer " + data.accessToken
+          "Authorization": "Bearer " + userData.accessToken
         },
       })
       .then(function (response) {
