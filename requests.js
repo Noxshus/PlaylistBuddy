@@ -10,7 +10,7 @@ function GetAuthorisation()
 {
     let _clientId = "30f17f826d674bb48dcb9ae95ad228c3";
     let _redirectUri = "https://noxshus.github.io/PlaylistBuddy/";
-    let _scopes = "user-modify-playback-state playlist-read-collaborative playlist-modify-public playlist-modify-private";
+    let _scopes = "user-modify-playback-state playlist-read-collaborative playlist-modify-public playlist-modify-private playlist-read-private";
     
     window.location.href = "https://accounts.spotify.com/authorize" +
     "?client_id=" + encodeURIComponent(_clientId) +
@@ -58,7 +58,6 @@ function GetPlaylists()
         console.log(response.data);
         userData.userPlayList = response.data;
         console.log(userData.userPlayList);
-        console.log(userData.userPlayList.items[0].name);
         UpdatePlaylists();
       })
       .catch(function (error) {
