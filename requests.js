@@ -52,7 +52,7 @@ function GetPlaylists()
         headers: {
           "Authorization": "Bearer " + userData.accessToken
         },
-        query: {
+        params: {
             "limit": 50, // this is the maximum value for this. Users with >50 playlists will need extra handling, using the "offset" param: https://developer.spotify.com/documentation/web-api/reference/playlists/get-a-list-of-current-users-playlists/
         }
       })
