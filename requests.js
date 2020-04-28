@@ -40,7 +40,7 @@ function GetAuthorisationParameters()
 {
     if (userData.signInState == true)
     {
-        if (window.location.hash != null) //check there's a hash before trying to retrieve it
+        if (window.location.hash != "") //check there's a hash before trying to retrieve it
         {
             if (CheckIfTokenHasExpired() == false) // check whether or not it's an expired token
             {
