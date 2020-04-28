@@ -1,31 +1,31 @@
 function UpdatePlaylists()
 {
   Update("playlists", ""); //clear the previous contents
-  for (let i = 0; i < userData.userPlaylist.items.length; i++)
+  for (let i = 0; i < global.userPlaylist.items.length; i++)
   {    
     let _node = document.createElement("LI");
     _node.setAttribute("id", "playlist" + i);
-    let _textNode = document.createTextNode(userData.userPlaylist.items[i].name);
+    let _textNode = document.createTextNode(global.userPlaylist.items[i].name);
     _node.appendChild(_textNode);
     document.getElementById("playlists").appendChild(_node);
 
     
   }
 
-  for (let i = 0; i < userData.userPlaylist.items.length; i++)
+  for (let i = 0; i < global.userPlaylist.items.length; i++)
   {
-    BuildButton("playlistbutton" + i, "GetTracks('" + userData.userPlaylist.items[i].id + "')", "Get Tracks", "playlist" + i);
+    BuildButton("playlistbutton" + i, "GetTracks('" + global.userPlaylist.items[i].id + "')", "Get Tracks", "playlist" + i);
   }
 }
 
 function UpdateTracks()
 {
   Update("tracks", ""); //clear the previous contents
-  for (let i = 0; i < userData.userPlaylistTracks.items.length; i++)
+  for (let i = 0; i < global.userPlaylistTracks.items.length; i++)
   {
     let _node = document.createElement("LI");
     _node.setAttribute("id", "track" + i);
-    let _textNode = document.createTextNode(userData.userPlaylistTracks.items[i].track.name);
+    let _textNode = document.createTextNode(global.userPlaylistTracks.items[i].track.name);
     _node.appendChild(_textNode);
     document.getElementById("tracks").appendChild(_node);
   }
