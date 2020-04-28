@@ -110,7 +110,7 @@ function UpdatePlaylists()
 
     for (let i = 0; i < userData.userPlaylist.items.length; i++)
     {
-      BuildButton("playlistbutton" + i, "GetTracks(" + userData.userPlaylist.items[i].id + ")", "Get Tracks", "playlist" + i);
+      BuildButton("playlistbutton" + i, "GetTracks('" + userData.userPlaylist.items[i].id + "')", "Get Tracks", "playlist" + i);
     }
 }
 
