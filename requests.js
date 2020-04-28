@@ -3,7 +3,9 @@ var userData = { //saved between sessions to keep track of the token
     tokenType : "",
     expiresIn : 0,
 
-    tokenExpiryTime: new Date(), //time the token will expire - defaults to the time right now (which would be the same as having an expired token)
+    tokenExpiryTime : new Date(), //time the token will expire - defaults to the time right now (which would be the same as having an expired token)
+
+    signInState : false, //will only be false before a user attempts to sign in for the first time 
 }
 
 var global = {
@@ -19,6 +21,8 @@ function GetAuthorisation()
     } 
     else 
     { //we need to get a new token
+        userData.signInState = true; //sign-in has been attempted. Next onload will attempt to extract the parameters from the url
+        
         const _clientId = "30f17f826d674bb48dcb9ae95ad228c3";
         const _redirectUri = "https://noxshus.github.io/PlaylistBuddy/";
         const _scopes = "user-modify-playback-state playlist-read-collaborative playlist-modify-public playlist-modify-private playlist-read-private";
@@ -33,29 +37,36 @@ function GetAuthorisation()
 
 function GetAuthorisationParameters()
 {
-    if (window.location.hash != null) //check there's a hash before trying to retrieve it
+    if (userData.signInState == true)
     {
-        if (CheckIfTokenHasExpired() == false) // check whether or not it's an expired token
+        if (window.location.hash != null) //check there's a hash before trying to retrieve it
         {
-            const _urlParams = new URLSearchParams(window.location.hash);
-            userData.accessToken = _urlParams.get('#access_token');
-            userData.tokenType = _urlParams.get('token_type');
-            userData.expiresIn = _urlParams.get('expires_in');
+            if (CheckIfTokenHasExpired() == false) // check whether or not it's an expired token
+            {
+                const _urlParams = new URLSearchParams(window.location.hash);
+                userData.accessToken = _urlParams.get("#access_token");
+                userData.tokenType = _urlParams.get("token_type");
+                userData.expiresIn = _urlParams.get("expires_in");
 
-            SetTokenExpiry(); //set the time the token is expected to expire at
-            Save(); //save it to local storage
+                SetTokenExpiry(); //set the time the token is expected to expire at
+                Save(); //save it to local storage
 
-            console.log("Acquired Token!");
-            console.log("Access Token: " + userData.accessToken + " Token Type: " + userData.tokenType + " Expires In: " + userData.expiresIn);
+                console.log("Acquired Token!");
+                console.log("Access Token: " + userData.accessToken + " Token Type: " + userData.tokenType + " Expires In: " + userData.expiresIn);
+            }
+            else
+            {
+                console.log("Previous token is expired - sign in again to get a new one.")
+            }
         }
         else
         {
-            console.log("Token is expired - sign in again to get a new one.")
+            console.log("No hash in the URL - user likely hasn't signed in.");
         }
     }
     else
     {
-        console.log("No hash in the URL - user likely hasn't signed in.");
+        console.log("Sign-In State:" + userData.signInState);
     }
 }
 
