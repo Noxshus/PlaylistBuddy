@@ -78,7 +78,7 @@ function GetTracks(_playlistId)
       "Authorization": "Bearer " + userData.accessToken
     },
     params: {
-      "fields": "items(track(name,artists,id)" //https://developer.spotify.com/documentation/web-api/reference/playlists/get-playlists-tracks/
+      "fields": "items(track(name,artists,id))" //https://developer.spotify.com/documentation/web-api/reference/playlists/get-playlists-tracks/
     } //this request supports drilling down and cherry-picking the return values. Since app might be used by people on data, better keep it as light as possible since these values are saved
   })
   .then(function (response) {
