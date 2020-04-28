@@ -7,10 +7,15 @@ var userData = {
   userPlaylistTracks: {},
 }
 
-window.addEventListener('locationchange', function(){ //after requesting & receiving authorisation, the url is modified with a hash, which this will detect & pick up the params from it
+/*window.addEventListener('locationchange', function(){ //after requesting & receiving authorisation, the url is modified with a hash, which this will detect & pick up the params from it
   GetAuthorisationParameters();
   console.log('New hash!');
-})
+})*/
+
+window.onhashchange = function() { 
+  GetAuthorisationParameters();
+  console.log('New hash!');
+}
 
 function GetAuthorisation()
 {
