@@ -44,6 +44,7 @@ function GetAuthorisationParameters()
         {
             if (CheckIfTokenHasExpired() == false) // check whether or not it's an expired token
             {
+                console.log(window.location.hash);
                 const _urlParams = new URLSearchParams(window.location.hash);
                 userData.accessToken = _urlParams.get("#access_token");
                 userData.tokenType = _urlParams.get("token_type");
