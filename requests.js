@@ -3,7 +3,8 @@ var userData = {
     tokenType : "",
     expiresIn : 0,
 
-    userPlayList: {},
+    userPlaylist: {},
+    userPlaylistTracks: {},
 }
 
 function GetAuthorisation()
@@ -57,10 +58,10 @@ function GetPlaylists()
         }
       })
       .then(function (response) {
-        console.log(response);
-        console.log(response.data);
-        userData.userPlayList = response.data;
-        console.log(userData.userPlayList);
+        //console.log(response);
+        //console.log(response.data);
+        userData.userPlaylist = response.data;
+        //console.log(userData.userPlayList);
         UpdatePlaylists();
       })
       .catch(function (error) {
@@ -68,16 +69,71 @@ function GetPlaylists()
       });
 }
 
+function GetTracks(_playlistId)
+{
+  axios({
+    method: "get",
+    url: "https://api.spotify.com/v1/playlists/" + _playlistId + "/tracks",
+    headers: {
+      "Authorization": "Bearer " + userData.accessToken
+    },
+    params: {
+      "fields": "items(track(name,artists,id)" //https://developer.spotify.com/documentation/web-api/reference/playlists/get-playlists-tracks/
+    } //this request supports drilling down and cherry-picking the return values. Since app might be used by people on data, better keep it as light as possible since these values are saved
+  })
+  .then(function (response) {
+    //console.log(response);
+    console.log(response.data);
+    userData.userPlaylistTracks = response.data;
+    console.log(userData.userPlaylistTracks);
+    UpdateTracks();
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+}
+
 //------
 
 function UpdatePlaylists()
 {
-    for (let i = 0; i < userData.userPlayList.items.length; i++)
+    for (let i = 0; i < userData.userPlaylist.items.length; i++)
     {    
-        let _node = document.createElement("LI"); 
-        let _textNode = document.createTextNode(userData.userPlayList.items[i].name);
-        _node.appendChild(_textNode);
+      let _node = document.createElement("LI");
+      _node.setAttribute("id", "playlist" + i);
+      let _textNode = document.createTextNode(userData.userPlaylist.items[i].name);
+      _node.appendChild(_textNode);
+      document.getElementById("playlists").appendChild(_node);
 
-        document.getElementById("playlists").appendChild(_node);
+      
     }
+
+    for (let i = 0; i < userData.userPlaylist.items.length; i++)
+    {
+      BuildButton("playlistbutton" + i, "GetTracks(" + userData.userPlaylist.items[i].id + ")", "Get Tracks", "playlist" + i);
+    }
+}
+
+function UpdateTracks()
+{
+  for (let i = 0; i < userData.userPlaylistTracks.items.length; i++)
+  {
+    let _node = document.createElement("LI");
+    _node.setAttribute("id", "track" + i);
+    let _textNode = document.createTextNode(userData.userPlaylistTracks.items[i].track.name);
+    _node.appendChild(_textNode);
+    document.getElementById("tracks").appendChild(_node);
+  }
+}
+
+//---------------------------
+
+function BuildButton(_id, _buttonOnClickFunction, _buttonText, _nodeId)
+{
+    let _button = document.createElement("BUTTON");
+    _button.setAttribute("id", _id);
+    _button.setAttribute("onclick",_buttonOnClickFunction);
+    _button.innerHTML = _buttonText;
+    
+    document.getElementById(_nodeId).appendChild(_button);
 }
