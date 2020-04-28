@@ -7,11 +7,6 @@ var userData = {
   userPlaylistTracks: {},
 }
 
-/*window.addEventListener('locationchange', function(){ //after requesting & receiving authorisation, the url is modified with a hash, which this will detect & pick up the params from it
-  GetAuthorisationParameters();
-  console.log('New hash!');
-})*/
-
 window.onhashchange = function() { 
   GetAuthorisationParameters();
   console.log('New hash!');
@@ -19,9 +14,12 @@ window.onhashchange = function() {
 
 function GetAuthorisation()
 {
-  if(window.location.hash) { //if there's already a hash in the URL
+  if(window.location.hash) 
+  { //if there's already a hash in the URL
     GetAuthorisationParameters();
-  } else {
+  } 
+  else 
+  {
     let _clientId = "30f17f826d674bb48dcb9ae95ad228c3";
     let _redirectUri = "https://noxshus.github.io/PlaylistBuddy/";
     let _scopes = "user-modify-playback-state playlist-read-collaborative playlist-modify-public playlist-modify-private playlist-read-private";
