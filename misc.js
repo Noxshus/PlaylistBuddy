@@ -11,7 +11,7 @@ function Save()
 function Load() 
 {
     let _checkSave = JSON.parse(localStorage.getItem("playlistbuddy"));
-    if (_checkSave !== null) {
+    if (_checkSave != null) {
         userData = _checkSave;
     }
 }

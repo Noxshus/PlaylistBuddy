@@ -22,7 +22,8 @@ function GetAuthorisation()
     else 
     { //we need to get a new token
         userData.signInState = true; //sign-in has been attempted. Next onload will attempt to extract the parameters from the url
-        
+        Save(); //save it to local storage, as the state will otherwise be lost
+
         const _clientId = "30f17f826d674bb48dcb9ae95ad228c3";
         const _redirectUri = "https://noxshus.github.io/PlaylistBuddy/";
         const _scopes = "user-modify-playback-state playlist-read-collaborative playlist-modify-public playlist-modify-private playlist-read-private";
