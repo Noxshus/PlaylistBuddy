@@ -19,15 +19,19 @@ window.onhashchange = function() {
 
 function GetAuthorisation()
 {
-  let _clientId = "30f17f826d674bb48dcb9ae95ad228c3";
-  let _redirectUri = "https://noxshus.github.io/PlaylistBuddy/";
-  let _scopes = "user-modify-playback-state playlist-read-collaborative playlist-modify-public playlist-modify-private playlist-read-private";
-  
-  window.location.href = "https://accounts.spotify.com/authorize" +
-  "?client_id=" + encodeURIComponent(_clientId) +
-  "&response_type=token" +
-  "&redirect_uri=" + encodeURIComponent(_redirectUri) +
-  "&scope=" + encodeURIComponent(_scopes);
+  if(window.location.hash) { //if there's already a hash in the URL
+    GetAuthorisationParameters();
+  } else {
+    let _clientId = "30f17f826d674bb48dcb9ae95ad228c3";
+    let _redirectUri = "https://noxshus.github.io/PlaylistBuddy/";
+    let _scopes = "user-modify-playback-state playlist-read-collaborative playlist-modify-public playlist-modify-private playlist-read-private";
+
+    window.location.href = "https://accounts.spotify.com/authorize" +
+    "?client_id=" + encodeURIComponent(_clientId) +
+    "&response_type=token" +
+    "&redirect_uri=" + encodeURIComponent(_redirectUri) +
+    "&scope=" + encodeURIComponent(_scopes);
+  }
 }
 
 function GetAuthorisationParameters()
