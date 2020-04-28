@@ -11,19 +11,11 @@ var global = {
     userPlaylistTracks: {},
 }
 
-window.onhashchange = function() { 
-    GetAuthorisationParameters();
-    console.log('New hash!');
-}
-
 function GetAuthorisation()
 {
-    if(window.location.hash) 
-    { //if there's already a hash in the URL
-        if (CheckIfTokenHasExpired() == false)
-        { //if there is a hash, make sure it hasn't expired
-            GetAuthorisationParameters();
-        }
+    if(CheckIfTokenHasExpired() == false) 
+    { //token hasn't expired yet, so no need for a new one
+        console.log("No need for a new token; previous one hasn't expired.");
     } 
     else 
     { //we need to get a new token
@@ -53,9 +45,13 @@ function GetAuthorisationParameters()
             SetTokenExpiry(); //set the time the token is expected to expire at
             Save(); //save it to local storage
 
-            console.log(window.location.hash);
+            console.log("Acquired Token!");
             console.log("Access Token: " + userData.accessToken + " Token Type: " + userData.tokenType + " Expires In: " + userData.expiresIn);
         }
+    }
+    else
+    {
+        console.log("No hash in the URL - user likely hasn't signed in.");
     }
 }
 
