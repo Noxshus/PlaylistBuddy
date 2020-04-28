@@ -18,7 +18,7 @@ function Load()
 function SetTokenExpiry() //set the token expiry time to one hour from now
 {
     userData.tokenExpiryTime = new Date();
-    userData.tokenExpiryTime.setHours(today.getHours() + 1);
+    userData.tokenExpiryTime.setHours(userData.tokenExpiryTime.getHours() + 1);
 }
 
 function CheckIfTokenHasExpired() //access tokens only have a lifetime of 60 mins. After that point, user must re-auth and get a new one
