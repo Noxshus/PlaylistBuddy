@@ -24,14 +24,13 @@ function SetTokenExpiry() //set the token expiry time to one hour from now
 function CheckIfTokenHasExpired() //access tokens only have a lifetime of 60 mins. After that point, user must re-auth and get a new one
 {
     _timeNow = new Date();
+    console.log("Curr: " + _timeNow + " Expiry: " + userData.tokenExpiryTime);
     if (_timeNow > userData.tokenExpiryTime)
     {
-        console.log("Curr: " + _timeNow + " Expiry: " + userData.tokenExpiryTime)
         return true; //has expired
     }
     else 
     {
-        console.log("Curr: " + _timeNow + " Expiry: " + userData.tokenExpiryTime)
         return false; //hasn't expired
     }
 }
