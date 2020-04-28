@@ -1,5 +1,6 @@
 window.onload = function() {
     Load(); //load user data, if it exists
+    GetAuthorisationParameters(); //get auth parameters, if there are any
 }
 
 function Save() 
