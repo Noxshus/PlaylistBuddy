@@ -63,7 +63,7 @@ function GetAuthorisationParameters()
         }
         else
         {
-            console.log("No hash in the URL - user likely hasn't signed in.");
+            console.log("No hash in the URL - user likely hasn't signed in, or has reloaded the page");
         }
     }
     else
