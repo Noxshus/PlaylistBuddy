@@ -33,11 +33,11 @@ function GetAuthorisation()
 
 function GetAuthorisationParameters()
 {
-    if (window.location.hash != null && CheckIfTokenHasExpired() == true) //check there's a hash before bothering + that the token has expired
+    if (window.location.hash != null) //check there's a hash before trying to retrieve it
     {
-        const _urlParams = new URLSearchParams(window.location.hash);
-        if (_urlParams != null)
+        if (CheckIfTokenHasExpired() == false) // check whether or not it's an expired token
         {
+            const _urlParams = new URLSearchParams(window.location.hash);
             userData.accessToken = _urlParams.get('#access_token');
             userData.tokenType = _urlParams.get('token_type');
             userData.expiresIn = _urlParams.get('expires_in');
@@ -47,6 +47,10 @@ function GetAuthorisationParameters()
 
             console.log("Acquired Token!");
             console.log("Access Token: " + userData.accessToken + " Token Type: " + userData.tokenType + " Expires In: " + userData.expiresIn);
+        }
+        else
+        {
+            console.log("Token is expired - sign in again to get a new one.")
         }
     }
     else
