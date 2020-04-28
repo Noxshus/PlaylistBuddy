@@ -33,7 +33,7 @@ function GetAuthorisation()
 
 function GetAuthorisationParameters()
 {
-    if (window.location.hash != null) //check there's a hash before bothering
+    if (window.location.hash != null && CheckIfTokenHasExpired() == true) //check there's a hash before bothering + that the token has expired
     {
         const _urlParams = new URLSearchParams(window.location.hash);
         if (_urlParams != null)
