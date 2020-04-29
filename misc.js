@@ -1,6 +1,13 @@
 window.onload = function() {
     Load(); //load user data, if it exists
-    GetAuthorisationParameters(); //get auth parameters, if there are any
+    if (userData.signInState == true)
+    {
+        GetAuthorisationParameters(); //get auth parameters, if there are any
+    }
+    else
+    {
+        console.log("User hasn't attempted to sign-in before.");
+    }
 }
 
 function Save() 

@@ -38,37 +38,30 @@ function GetAuthorisation()
 
 function GetAuthorisationParameters()
 {
-    if (userData.signInState == true)
+    if (window.location.hash != "") //check there's a hash before trying to retrieve it
     {
-        if (window.location.hash != "") //check there's a hash before trying to retrieve it
+        if (CheckIfTokenHasExpired() == false) // check whether or not it's an expired token
         {
-            if (CheckIfTokenHasExpired() == false) // check whether or not it's an expired token
-            {
-                console.log(window.location.hash);
-                const _urlParams = new URLSearchParams(window.location.hash);
-                userData.accessToken = _urlParams.get("#access_token");
-                userData.tokenType = _urlParams.get("token_type");
-                userData.expiresIn = _urlParams.get("expires_in");
+            console.log(window.location.hash);
+            const _urlParams = new URLSearchParams(window.location.hash);
+            userData.accessToken = _urlParams.get("#access_token");
+            userData.tokenType = _urlParams.get("token_type");
+            userData.expiresIn = _urlParams.get("expires_in");
 
-                SetTokenExpiry(); //set the time the token is expected to expire at
-                Save(); //save it to local storage
+            SetTokenExpiry(); //set the time the token is expected to expire at
+            Save(); //save it to local storage
 
-                console.log("Acquired Token!");
-                console.log("Access Token: " + userData.accessToken + " Token Type: " + userData.tokenType + " Expires In: " + userData.expiresIn);
-            }
-            else
-            {
-                console.log("Previous token is expired - sign in again to get a new one.")
-            }
+            console.log("Acquired Token!");
+            console.log("Access Token: " + userData.accessToken + " Token Type: " + userData.tokenType + " Expires In: " + userData.expiresIn);
         }
         else
         {
-            console.log("No hash in the URL - user likely hasn't signed in, or has reloaded the page");
+            console.log("Previous token is expired - sign in again to get a new one.")
         }
     }
     else
     {
-        console.log("Sign-In State:" + userData.signInState);
+        console.log("No hash in the URL - user likely hasn't signed in, or has reloaded the page");
     }
 }
 
