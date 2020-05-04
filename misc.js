@@ -33,11 +33,11 @@ function CheckIfTokenHasExpired() //access tokens only have a lifetime of 60 min
 {
     _timeNow = new Date();
     console.log("Curr: " + _timeNow + " Expiry: " + userData.tokenExpiryTime);
-    if (_timeNow > userData.tokenExpiryTime)
+    if (_timeNow.getTime() > userData.tokenExpiryTime.getTime())
     {
         return true; //has expired
     }
-    else 
+    else
     {
         return false; //hasn't expired
     }
