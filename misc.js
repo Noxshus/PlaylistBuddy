@@ -1,7 +1,7 @@
 window.onload = function() {
     Load(); //load user data, if it exists
 
-    if (CheckIfUrlHasChanged == true)
+    if (CheckIfUrlHasChanged() == true)
     {
         console.log("URL has changed. User is visiting the page again, or has been redirected by authorisation.");
         userData.url = window.location.href; //set the saved url to the new one
