@@ -8,6 +8,7 @@ window.onload = function() {
     {
         console.log("User hasn't attempted to sign-in before.");
     }
+    console.log(document.referrer);
 }
 
 function Save() 
