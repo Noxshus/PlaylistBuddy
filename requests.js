@@ -6,6 +6,8 @@ var userData = { //saved between sessions to keep track of the token
     expiresIn : 0,
 
     tokenExpiryTime : new Date(), //time the token will expire - defaults to the time right now (which would be the same as having an expired token)
+
+    signIn: false, //keeps track of whether the user is meant to be signed in, or not
 }
 
 var global = {
@@ -30,6 +32,9 @@ function GetAuthorisation()
         "&response_type=token" +
         "&redirect_uri=" + encodeURIComponent(_redirectUri) +
         "&scope=" + encodeURIComponent(_scopes);
+
+        userData.signIn = true; //user has signed in
+        Save(); //save the state as we're about to be redirected
     }
 }
 
