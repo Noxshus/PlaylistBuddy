@@ -7,6 +7,8 @@ window.onload = function() {
         userData.url = window.location.href; //set the saved url to the new one
         GetAuthorisation(); //attempt to get auth parameters in the url, if there are any & if current ones have expired. Will save the URL change as part-of it.
     }
+
+    console.log(userData.url);
 }
 
 function Save() 
