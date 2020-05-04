@@ -1,14 +1,12 @@
 window.onload = function() {
     Load(); //load user data, if it exists
-    if (userData.signInState == true)
+
+    if (CheckIfUrlHasChanged == true)
     {
-        GetAuthorisationParameters(); //get auth parameters, if there are any
+        console.log("URL has changed. User is visiting the page again, or has been redirected by authorisation.");
+        userData.url = window.location.href; //set the saved url to the new one
+        GetAuthorisation(); //attempt to get auth parameters in the url, if there are any & if current ones have expired. Will save the URL change as part-of it.
     }
-    else
-    {
-        console.log("User hasn't attempted to sign-in before.");
-    }
-    console.log(document.referrer);
 }
 
 function Save() 
@@ -41,5 +39,17 @@ function CheckIfTokenHasExpired() //access tokens only have a lifetime of 60 min
     else
     {
         return false; //hasn't expired
+    }
+}
+
+function CheckIfUrlHasChanged() //simply returns true if the saved variable for the url is different from the current url
+{
+    if (userData.url != window.location.href)
+    {
+        return true; //url has changed
+    }
+    else
+    {
+        return false;
     }
 }
