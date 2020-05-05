@@ -55,3 +55,11 @@ function CheckIfUrlHasChanged() //simply returns true if the saved variable for 
         return false;
     }
 }
+
+function Sort(_type, _criteria, _amount)
+{
+    switch (_type)
+    {
+        case "push":
+    }
+}

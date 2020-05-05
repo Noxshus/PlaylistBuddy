@@ -8,21 +8,25 @@
 </head>
 <body>
     <div>
-        <p>Build #0055</p>
+        <p>Build #0056</p>
         <button onclick="GetAuthorisation()">Sign In</button>
         <!--<button onclick="GetAuthorisationParameters()">Get Params</button>-->
         <button onclick="PlayTrack()">Play</button>
         <button onclick="GetPlaylists()">Get Playlists</button>
+        <button onclick="GetAudioFeatures()">Get Audio Features</button>
         <div>
             <h1>Playlists</h1>
             <div id="playlists"></div>
             <h1>Tracks</h1>
             <div id="tracks"></div>
+            <h1>Sorting</h1>
+            <button onclick="">DANCE</button>
         </div>
     </div>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="requests.js"></script>
     <script src="dom.js"></script>
     <script src="misc.js"></script>
+    <script src="sorting.js"></script>
 </body>
 </html>

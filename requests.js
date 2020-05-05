@@ -13,6 +13,7 @@ var userData = { //saved between sessions to keep track of the token
 var global = {
     userPlaylist: {},
     userPlaylistTracks: {},
+    userPlaylistTracksAnalysis: {},
 }
 
 function GetAuthorisation()
@@ -44,7 +45,6 @@ function GetAuthorisationParameters()
     {
         if (CheckIfTokenHasExpired() == true) //If token has expired, collect the one in the hash
         {
-            console.log(window.location.hash);
             const _urlParams = new URLSearchParams(window.location.hash);
             userData.accessToken = _urlParams.get("#access_token");
             userData.tokenType = _urlParams.get("token_type");
@@ -123,6 +123,34 @@ function GetTracks(_playlistId)
         global.userPlaylistTracks = response.data;
         //console.log(global.userPlaylistTracks);
         UpdateTracks();
+    })
+    .catch(function (error) {
+        console.log(error);
+    });
+}
+
+function GetAudioFeatures() //get the audio features for the contents of userPlaylistTracks
+{
+    let _trackIdsString = "";
+    for (let i = 0; i < userData.userPlaylistTracks.items.length; i++)
+    {
+        _trackIdsString = userData.userPlaylistTracks.items[i].track.id  + ",";
+    }
+    axios({
+        method: "get",
+        url: "https://api.spotify.com/v1/audio-features",
+        headers: {
+            "Authorization": "Bearer " + userData.accessToken
+        },
+        params: {
+            "ids": _trackIdsString //https://developer.spotify.com/documentation/web-api/reference/tracks/get-several-audio-features/
+        }
+    })
+    .then(function (response) {
+        //console.log(response);
+        //console.log(response.data);
+        global.userPlaylistTracksAnalysis = response.data;
+        console.log(global.userPlaylistTracksAnalysis);
     })
     .catch(function (error) {
         console.log(error);
