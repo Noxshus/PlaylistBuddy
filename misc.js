@@ -79,12 +79,12 @@ function ReturnNRandomIntegers(_min, _max, _n) //returns N random integers with 
                 _nRandomInts.push(_randomNumber);
             }
         }
-        
+
         return _nRandomInts;
     }
     else
     {
-        console.log("Cannot generate " + _n + " random numbers, because the range provided is too small.");
+        console.log("Cannot generate " + _n + " random numbers, because the range provided is too small: " + _n + " vs " + (_max - _min));
         return null;
     }
 }
