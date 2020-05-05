@@ -51,5 +51,6 @@ function ReturnTracksAboveThreshold(_criteria, _threshold) //given a specific at
         console.log("Warning: Only " + _tracksAboveThreshold.length + " tracks with " + _criteria + " above " + _threshold + ". Threshold was already loosened; Returning...");
     }
 
+    console.log(_tracksAboveThreshold);
     return _tracksAboveThreshold;
 }
