@@ -174,6 +174,7 @@ function GetAudioFeatures() //get the audio features for the contents of userPla
     .then(function (response) {
         //console.log(response);
         //console.log(response.data);
+        console.log(_trackIdsString);
         global.userPlaylistTracksAnalysis = response.data;
         console.log(global.userPlaylistTracksAnalysis);
     })
