@@ -14,6 +14,7 @@ var global = {
     userPlaylist: {},
     userPlaylistTracks: {},
     userPlaylistTracksAnalysis: {},
+    userTrackDisplay: {}, //stores whatever tracks we're displaying to the user currently
 }
 
 function GetAuthorisation()
@@ -105,7 +106,7 @@ function GetPlaylists()
     });
 }
 
-function GetTracks(_playlistId)
+function GetTracksFromPlaylist(_playlistId)
 {
     axios({
         method: "get",
@@ -123,6 +124,30 @@ function GetTracks(_playlistId)
         global.userPlaylistTracks = response.data;
         //console.log(global.userPlaylistTracks);
         UpdateTracks();
+    })
+    .catch(function (error) {
+        console.log(error);
+    });
+}
+
+function GetTracks(_trackIdsString) //get tracks, given a comma delimited string of track IDs
+{
+    axios({
+        method: "get",
+        url: "https://api.spotify.com/v1/tracks",
+        headers: {
+            "Authorization": "Bearer " + userData.accessToken
+        },
+        params: {
+            "ids": _trackIdsString //https://developer.spotify.com/documentation/web-api/reference/tracks/get-several-tracks/
+        }
+    })
+    .then(function (response) {
+        //console.log(response);
+        //console.log(response.data);
+        global.userTrackDisplay = response.data;
+        //console.log(global.userTrackDisplay);
+        UpdateUserTrackDisplay()
     })
     .catch(function (error) {
         console.log(error);

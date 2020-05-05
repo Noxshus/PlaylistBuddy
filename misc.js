@@ -24,6 +24,8 @@ function Load()
     }
 }
 
+// Token Related
+
 function SetTokenExpiry() //set the token expiry time to one hour from now
 {
     userData.tokenExpiryTime = new Date();
@@ -56,10 +58,33 @@ function CheckIfUrlHasChanged() //simply returns true if the saved variable for 
     }
 }
 
-function Sort(_type, _criteria, _amount)
+//
+
+function ReturnRandomInteger(_min, _max) //https://stackoverflow.com/questions/4959975/generate-random-number-between-two-numbers-in-javascript
 {
-    switch (_type)
+    return Math.floor(Math.random() * (_max - _min + 1)) + _min;
+}
+
+function ReturnNRandomIntegers(_min, _max, _n) //returns N random integers with NO duplicates - modified: https://stackoverflow.com/questions/8378870/generating-unique-random-numbers-integers-between-0-and-x
+{
+    let _nRandomInts = [];
+
+    if (_n > (_max - _min))
     {
-        case "push":
+        while (_nRandomInts.length < _n) 
+        {
+            let _randomNumber = ReturnRandomInteger(_min, _max);
+            if (_nRandomInts.indexOf(_randomNumber) == -1) //if indexOf returns -1, it means there's no matching number - we can add this
+            { 
+                _nRandomInts.push(_randomNumber);
+            }
+        }
+        
+        return _nRandomInts;
+    }
+    else
+    {
+        console.log("Cannot generate " + _n + " random numbers, because the range provided is too small.");
+        return null;
     }
 }

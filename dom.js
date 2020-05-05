@@ -14,7 +14,7 @@ function UpdatePlaylists()
 
   for (let i = 0; i < global.userPlaylist.items.length; i++)
   {
-    BuildButton("playlistbutton" + i, "GetTracks('" + global.userPlaylist.items[i].id + "')", "Get Tracks", "playlist" + i);
+    BuildButton("playlistbutton" + i, "GetTracksFromPlaylist('" + global.userPlaylist.items[i].id + "')", "Get Tracks", "playlist" + i);
   }
 }
 
@@ -29,6 +29,19 @@ function UpdateTracks()
     _node.appendChild(_textNode);
     document.getElementById("tracks").appendChild(_node);
   }
+}
+
+function UpdateUserTrackDisplay() //displays whatever is in the userTrackDisplay object
+{
+    Update("usertrack", ""); //clear the previous contents
+    for (let i = 0; i < global.userTrackDisplay.tracks.length; i++)
+    {
+        let _node = document.createElement("LI");
+        _node.setAttribute("id", "usertrack" + i);
+        let _textNode = document.createTextNode(global.userTrackDisplay.tracks[i].name);
+        _node.appendChild(_textNode);
+        document.getElementById("usertrack").appendChild(_node);
+    }
 }
 
 function Update(_id, _content) 
