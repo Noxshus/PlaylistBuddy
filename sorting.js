@@ -6,7 +6,7 @@ function OfferDanceability(_amount)
 
     if (_tracksAboveThreshold.length > 0)
     {
-        console.log("Length: " + _tracksAboveThreshold.length);
+        //console.log("Length: " + _tracksAboveThreshold.length);
         _tracksToDisplay = ReturnNRandomIntegers(0, _tracksAboveThreshold.length, 3); //returned N unique ints - these will be used as element identifiers
 
         for (let i = 0; i < _tracksToDisplay.length; i++)
@@ -14,6 +14,7 @@ function OfferDanceability(_amount)
             _trackIdsString += _tracksAboveThreshold[_tracksToDisplay[i]] + ",";
         }
 
+        console.log(_trackIdsString);
         GetTracks(_trackIdsString);
     }
     else
