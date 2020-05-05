@@ -132,9 +132,9 @@ function GetTracks(_playlistId)
 function GetAudioFeatures() //get the audio features for the contents of userPlaylistTracks
 {
     let _trackIdsString = "";
-    for (let i = 0; i < userData.userPlaylistTracks.items.length; i++)
+    for (let i = 0; i < global.userPlaylistTracks.items.length; i++)
     {
-        _trackIdsString = userData.userPlaylistTracks.items[i].track.id  + ",";
+        _trackIdsString = global.userPlaylistTracks.items[i].track.id  + ",";
     }
     axios({
         method: "get",
