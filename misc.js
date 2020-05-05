@@ -8,7 +8,7 @@ window.onload = function() {
         GetAuthorisationParameters(); //attempt to get auth parameters in the url, if there are any & if current ones have expired. Will save the URL change as part-of it.
     }
 
-    console.log(userData.url);
+    //console.log(userData.url);
 }
 
 function Save() 
@@ -33,7 +33,7 @@ function SetTokenExpiry() //set the token expiry time to one hour from now
 function CheckIfTokenHasExpired() //access tokens only have a lifetime of 60 mins. After that point, user must re-auth and get a new one
 {
     _timeNow = new Date();
-    console.log("Curr: " + _timeNow + " Expiry: " + userData.tokenExpiryTime);
+    console.log("Token Created on: " + _timeNow + " Expires: " + userData.tokenExpiryTime);
     if (_timeNow.getTime() > new Date(userData.tokenExpiryTime).getTime()) //converted again to date objects because, for some reason, tokenExpiryTime becomes a string at runtime
     {
         return true; //has expired
