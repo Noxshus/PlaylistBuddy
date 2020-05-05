@@ -69,7 +69,7 @@ function ReturnNRandomIntegers(_min, _max, _n) //returns N random integers with 
 {
     let _nRandomInts = [];
 
-    if (_n > (_max - _min))
+    if (_n < (_max - _min))
     {
         while (_nRandomInts.length < _n) 
         {
