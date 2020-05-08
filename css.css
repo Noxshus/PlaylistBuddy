@@ -5,3 +5,7 @@
 .transparent {
     mix-blend-mode: multiply;
 }
+
+.col {
+    padding: 5px; /*default is a huge 15px*/
+}
