@@ -1,8 +1,3 @@
 .card-body {
     background-color: #1DB954 !important; /*spotify green - https://developer.spotify.com/branding-guidelines/*/
 }
-
-.card-img-top {
-    height: auto;
-    width: auto;
-}
