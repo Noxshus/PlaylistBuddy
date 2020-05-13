@@ -29,7 +29,7 @@ function UpdateCard(_cardNumber, _link, _title, _text)
 { //scalable function for update card contents
     if (_link != "") //if there's going to be an onclick function, then...
     {
-        let _card = document.getElementById(_cardNumber + "card");
+        let _card = document.getElementById("card" + _cardNumber);
         _card.onclick = _link;
         _card.classList.add("clickable");
     }
