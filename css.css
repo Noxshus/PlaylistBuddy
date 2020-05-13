@@ -18,3 +18,7 @@
 .padding-top {
     padding-top: 5px;
 }
+
+.clickable { /*makes an element look clickable*/
+    cursor: pointer;
+}
