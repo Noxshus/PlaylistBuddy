@@ -5,6 +5,7 @@
 .card-img-top {
     height: 100px;
     width: 100px;
+    border: 0px;
 }
 
 .transparent {

@@ -2,6 +2,7 @@ function UpdateClearCards() //clears all the contents of the cards, to be replac
 {
     for (let i = 0; i < 6; i++) //6 is the number of cards that can be on screen at once (0 - 5)
     {
+        console.log(i);
         let _card = document.getElementById(i + "card");
         _card.onclick = ""; //remove any onclick functions
         if (_card.classList.contains("clickable") == true)
@@ -21,7 +22,7 @@ function UpdateClearCards() //clears all the contents of the cards, to be replac
 function UpdateMainMenu() //displays main menu options
 {
     UpdateClearCards(); //clears the previous content in preparation to display new content
-    
+
     UpdateCard("1", "GetPlaylists()", "Party Mode", "Recommend & play songs from playlists according to given criteria.");
 }
 
