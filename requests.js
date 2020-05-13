@@ -7,7 +7,6 @@ var userData = { //saved between sessions to keep track of the token
 
     tokenExpiryTime : new Date(), //time the token will expire - defaults to the time right now (which would be the same as having an expired token)
 
-    signIn: false, //keeps track of whether the user is meant to be signed in, or not
 }
 
 var global = {
@@ -22,6 +21,7 @@ function GetAuthorisation()
     if(CheckIfTokenHasExpired() == false) 
     { //token hasn't expired yet, so no need for a new one
         console.log("No need for a new token; previous one hasn't expired.");
+        UpdateMainMenu(); //display the main menu
     } 
     else 
     { //we need to get a new token
@@ -35,7 +35,6 @@ function GetAuthorisation()
         "&redirect_uri=" + encodeURIComponent(_redirectUri) +
         "&scope=" + encodeURIComponent(_scopes);
 
-        userData.signIn = true; //user has signed in
         Save(); //save the state as we're about to be redirected
     }
 }
@@ -56,6 +55,8 @@ function GetAuthorisationParameters()
 
             console.log("Acquired new token!");
             console.log("Access Token: " + userData.accessToken);
+            
+            UpdateMainMenu(); //after collecting the token, display the main menu
         }
         else
         {

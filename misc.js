@@ -5,7 +5,7 @@ window.onload = function() {
     {
         console.log("URL has changed. User is visiting the page again, or has been redirected by authorisation.");
         userData.url = window.location.href; //set the saved url to the new one
-        GetAuthorisationParameters(); //attempt to get auth parameters in the url, if there are any & if current ones have expired. Will save the URL change as part-of it.
+        GetAuthorisationParameters(); //attempt to get auth parameters in the url, if there are any & if current ones have expired.
     }
 
     //console.log(userData.url);
