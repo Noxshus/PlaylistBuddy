@@ -22,7 +22,7 @@ function UpdateMainMenu() //displays main menu options
 {
     UpdateClearCards(); //clears the previous content in preparation to display new content
 
-    //UpdateCard("1", GetPlaylists, "Party Mode", "Recommend & play songs from playlists according to given criteria.");
+    UpdateCard("1", GetPlaylists, "Party Mode", "Recommend & play songs from playlists according to given criteria.");
 }
 
 function UpdateCard(_cardNumber, _link, _title, _text) 
