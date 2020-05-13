@@ -3,7 +3,7 @@ function UpdateClearCards() //clears all the contents of the cards, to be replac
     for (let i = 0; i < 6; i++) //6 is the number of cards that can be on screen at once (0 - 5)
     {
         let _card = document.getElementById("card" + i);
-        _card.onclick = ""; //remove any onclick functions
+        _card.setAttribute("onclick", ""); //remove any onclick functions
         if (_card.classList.contains("clickable") == true)
         {
             _card.classList.remove("clickable"); //clickable is custom css - makes the mousepointer show up
@@ -22,7 +22,7 @@ function UpdateMainMenu() //displays main menu options
 {
     UpdateClearCards(); //clears the previous content in preparation to display new content
 
-    UpdateCard("1", GetPlaylists, "Party Mode", "Recommend & play songs from playlists according to given criteria.");
+    //UpdateCard("1", GetPlaylists, "Party Mode", "Recommend & play songs from playlists according to given criteria.");
 }
 
 function UpdateCard(_cardNumber, _link, _title, _text) 
@@ -30,7 +30,7 @@ function UpdateCard(_cardNumber, _link, _title, _text)
     if (_link != "") //if there's going to be an onclick function, then...
     {
         let _card = document.getElementById("card" + _cardNumber);
-        _card.onclick = _link;
+        _card.setAttribute("onclick", _link);
         _card.classList.add("clickable");
     }
 
