@@ -14,3 +14,7 @@
 .col {
     padding: 5px; /*default is a huge 15px*/
 }
+
+.padding-top {
+    padding-top: 5px;
+}
