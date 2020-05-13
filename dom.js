@@ -2,8 +2,7 @@ function UpdateClearCards() //clears all the contents of the cards, to be replac
 {
     for (let i = 0; i < 6; i++) //6 is the number of cards that can be on screen at once (0 - 5)
     {
-        console.log(i + "card");
-        let _card = document.getElementById(i + "card");
+        let _card = document.getElementById("card" + i);
         _card.onclick = ""; //remove any onclick functions
         if (_card.classList.contains("clickable") == true)
         {
