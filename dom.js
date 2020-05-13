@@ -12,6 +12,7 @@ function UpdateClearCards() //clears all the contents of the cards, to be replac
         let _cardImg = document.getElementById("card" + i + "img");
         _cardImg.src = ""; //clear the img
         _cardImg.alt = ""; //clear the alt text
+        _cardImg.classList.add("invisible");
 
         document.getElementById("card" + i + "title").innerHTML = ""; //clear the card title
         document.getElementById("card" + i + "text").innerHTML = ""; //clear the card text
